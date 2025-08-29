@@ -2,109 +2,96 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Invitación Especial para Angelly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación Especial</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ffdde1, #ee9ca7);
       text-align: center;
-      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-      color: #333;
-      padding: 40px;
+      padding: 20px;
+      margin: 0;
     }
     .container {
-      background: #fff;
-      border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      max-width: 600px;
+      max-width: 500px;
       margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
     h1 {
-      color: #e91e63;
+      color: #d6336c;
+      font-size: 1.8em;
+    }
+    p {
+      font-size: 1em;
+      color: #333;
     }
     button {
-      margin: 10px;
-      padding: 12px 25px;
-      font-size: 16px;
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      background-color: #d6336c;
+      color: white;
       border: none;
       border-radius: 8px;
+      font-size: 1em;
       cursor: pointer;
-      background: #e91e63;
-      color: white;
-      transition: 0.3s;
     }
     button:hover {
-      background: #c2185b;
-    }
-    .hidden {
-      display: none;
+      background-color: #a61e4d;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Invitación para Angelly 💖</h1>
-    <p>Mi amor, elige la hora para nuestra cena especial:</p>
+    <h1>🌹 Invitación Especial 🌹</h1>
+    <p>Mi amor Angelly Vanstrahlen,<br> quiero invitarte a una cena muy especial esta noche ❤️</p>
+    <p><strong>¿A qué hora prefieres?</strong></p>
+    <button onclick="seleccionarHora('6pm')">6:00 PM</button>
+    <button onclick="seleccionarHora('7pm')">7:00 PM</button>
+    <button onclick="seleccionarHora('8pm')">8:00 PM</button>
     
-    <!-- OPCIONES DE HORARIO -->
-    <div id="hora">
-      <button onclick="seleccionarHora('6pm')">6 PM</button>
-      <button onclick="seleccionarHora('7pm')">7 PM</button>
-      <button onclick="seleccionarHora('8pm')">8 PM</button>
-    </div>
-
-    <p id="mensajeHora"></p>
-
-    <!-- OPCIONES DE RESTAURANTE -->
-    <div id="restaurante" class="hidden">
-      <p>Ahora escoge el restaurante:</p>
+    <div id="respuestaHora"></div>
+    <div id="restaurantes" style="display:none;">
+      <p><strong>¿Dónde prefieres cenar?</strong></p>
       <button onclick="seleccionarRestaurante(1)">1. Fritos La Fortaleza</button>
       <button onclick="seleccionarRestaurante(2)">2. Perros Donde Pipe</button>
       <button onclick="seleccionarRestaurante(3)">3. Arepitas del Gordo</button>
       <button onclick="seleccionarRestaurante(4)">4. Piso 4</button>
+      <div id="respuestaRestaurante"></div>
     </div>
-
-    <p id="mensajeRestaurante"></p>
   </div>
 
   <script>
     function seleccionarHora(hora) {
-      let mensaje = "";
-      let mostrarRestaurantes = false;
+      let respuesta = document.getElementById("respuestaHora");
+      let restaurantes = document.getElementById("restaurantes");
+      let respuestaRestaurante = document.getElementById("respuestaRestaurante");
+
+      respuestaRestaurante.innerHTML = ""; // limpia mensaje anterior
+      restaurantes.style.display = "none";
 
       if (hora === "6pm") {
-        mensaje = "No se puede a esa hora, mi amor. Tenemos un compromiso con el ejercicio 💪.";
+        respuesta.innerHTML = "⏰ No se puede a las 6 PM, mi amor. Tenemos un compromiso con el ejercicio 💪❤️.<br>Elige otra hora.";
       } else if (hora === "7pm") {
-        mensaje = "Así sudados nos van a ver mal en el restaurante 😅. Mejor date un baño relajante.";
+        respuesta.innerHTML = "😅 A las 7 PM vamos a estar sudados, y no quiero que nos vean mal en el restaurante. Mejor date un baño relajante 💖.<br>Elige otra hora.";
       } else if (hora === "8pm") {
-        mensaje = "Perfecto amor 💖. Ponte hermosa como siempre, que hoy la cena va por parte de tu novio 😘.";
-        mostrarRestaurantes = true;
-      } else {
-        mensaje = "Opción inválida, vuelve a intentarlo.";
-      }
-
-      document.getElementById("mensajeHora").innerText = mensaje;
-
-      if (mostrarRestaurantes) {
-        document.getElementById("restaurante").classList.remove("hidden");
-      } else {
-        document.getElementById("restaurante").classList.add("hidden");
-        document.getElementById("mensajeRestaurante").innerText = "";
+        respuesta.innerHTML = "✨ Perfecto, mi amor. Ponte hermosa como siempre, hoy la cena va por parte de tu novio 😍.";
+        restaurantes.style.display = "block";
       }
     }
 
     function seleccionarRestaurante(opcion) {
-      let mensaje = "";
+      let respuestaRestaurante = document.getElementById("respuestaRestaurante");
 
       if (opcion === 1 || opcion === 2 || opcion === 3) {
-        mensaje = "Te amo mi vida ❤️. Eres una todo terreno 💪😍.";
+        respuestaRestaurante.innerHTML = "😍 Te amo, eres una todo terreno ❤️.";
       } else if (opcion === 4) {
-        mensaje = "No comas mucho en el día amor 😘, para que disfrutes a gusto tu cena en el Piso 4 🍷✨.";
-      } else {
-        mensaje = "Opción inválida, vuelve a intentarlo.";
+        respuestaRestaurante.innerHTML = "🍴 Amor, no comas mucho en el día para que disfrutes tu cena a gusto en el Piso 4 💕.";
       }
-
-      document.getElementById("mensajeRestaurante").innerText = mensaje;
     }
   </script>
 </body>
